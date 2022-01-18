@@ -8,6 +8,7 @@ steps:
 - name: "gcr.io/cloud-builders/gke-deploy1"
   args:
   - run
+  - --filename=gke-app.yaml
   - --image=gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA'
   - --location=asia-south1
   - --cluster=autopilot-cluster-v
