@@ -2,7 +2,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/vatan-cloud-run-cd-example/vatan-cloud-run-continuous-deployment-example:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/vatan-cloud-run-cd-example/vatan-cloud-run-continuous-deployment-example:$SHORT_SHA']
+  args: ['push', 'gcr.io/business-transformers/vatan-cloud-run-continuous-deployment-example:$SHORT_SHA']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'vatan-cloud-run-continuous-deployment-example', '--image=gcr.io/vatan-cloud-run-cd-example/vatan-cloud-run-continuous-deployment-example:$SHORT_SHA', '--region=asia-south1']
+  args: ['beta', 'run', 'deploy', 'vatan-cloud-run-continuous-deployment-example', '--image=gcr.io/business-transformers/vatan-cloud-run-continuous-deployment-example:$SHORT_SHA', '--region=asia-south1']
   
