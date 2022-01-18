@@ -1,14 +1,14 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/business-transformers/vatan1-cloud-run-continuous-deployment-example:$SHORT_SHA', '.']
+  args: ['build', '-t', 'gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/business-transformers/vatan1-cloud-run-continuous-deployment-example:$SHORT_SHA']
+  args: ['push', 'gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'vatan1-cloud-run-continuous-deployment-example', '--image=gcr.io/business-transformers/vatan1-cloud-run-continuous-deployment-example:$SHORT_SHA', '--region=asia-south1']
-- name: "gcr.io/cloud-builders/gke-deploy"
+  args: ['beta', 'run', 'deploy', 'vatan2-cloud-run-continuous-deployment-example', '--image=gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA', '--region=asia-south1']
+- name: "gcr.io/cloud-builders/gke-deploy1"
   args:
   - run
-  - --image=gcr.io/business-transformers/vatan1-cloud-run-continuous-deployment-example:$SHORT_SHA'
+  - --image=gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA'
   - --location=asia-south1
   - --cluster=autopilot-cluster-v
 
