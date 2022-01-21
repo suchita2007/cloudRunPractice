@@ -15,7 +15,7 @@ spec:
         run: my-source-repo-suchita
     spec:
       containers:
-      - image: gcr.io/business-transformers/my-source-repo-suchita:$SHORT_SHA
+      - image: gcr.io/business-transformers/my-source-repo-suchita@sha256:1e94a31312ec56ba1d519ad3d16cc8c909d7323cfa38bd0924aba33272c0ecdb
         name: my-source-repo-suchita
         ports:
         - containerPort: 80
