@@ -18,4 +18,4 @@ spec:
       - image: gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab
         name: my-source-repo-suchita
         ports:
-        - containerPort: 80
+        - containerPort: 8080
