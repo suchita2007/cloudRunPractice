@@ -34,8 +34,4 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=asia-south1-c'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-vatan'
-# push images to Google Container Registry with tags
-images: [
-   'my-source-repo-suchita=gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab',
-   'my-source-repo-suchita=gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab'
-  ]
+
