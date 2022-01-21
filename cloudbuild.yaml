@@ -4,16 +4,16 @@ steps:
   entrypoint: 'bash'
   args: [
    '-c', 
-   'docker pull gcr.io/business-transformers/my-source-repo-suchita@sha256:1e94a31312ec56ba1d519ad3d16cc8c909d7323cfa38bd0924aba33272c0ecdb || exit 0'
+   'docker pull gcr.io/business-transformers/my-source-repo-suchita:xyz || exit 0'
   ]
 #step 2
 - name: gcr.io/cloud-builders/docker
   args: [
    'build', 
    '-t', 
-   'gcr.io/business-transformers/my-source-repo-suchita@sha256:1e94a31312ec56ba1d519ad3d16cc8c909d7323cfa38bd0924aba33272c0ecdb',
+   'gcr.io/business-transformers/my-source-repo-suchita:xyz',
    '-t', 
-   'gcr.io/business-transformers/my-source-repo-suchita@sha256:1e94a31312ec56ba1d519ad3d16cc8c909d7323cfa38bd0924aba33272c0ecdb',
+   'gcr.io/business-transformers/my-source-repo-suchita:xyz',
    '.'
   ]
 #step 3
@@ -29,7 +29,7 @@ steps:
    'image', 
    'deployment', 
    'my-source-repo-suchita', 
-   'my-source-repo-suchita=gcr.io/business-transformers/my-source-repo-suchita@sha256:1e94a31312ec56ba1d519ad3d16cc8c909d7323cfa38bd0924aba33272c0ecdb'
+   'my-source-repo-suchita=gcr.io/business-transformers/my-source-repo-suchita:xyz'
   ]
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=asia-south1-c'
