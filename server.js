@@ -1,6 +1,6 @@
 // server.js
 const http = require('http')
-const PORT = process.env.PORT || 9000
+const PORT = process.env.PORT || 80
 http
   .createServer((req, res) => {
     console.log('New connection')
