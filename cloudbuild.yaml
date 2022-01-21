@@ -4,16 +4,16 @@ steps:
   entrypoint: 'bash'
   args: [
    '-c', 
-   'docker pull gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab || exit 0'
+   'docker pull gcr.io/business-transformers/my-source-repo-suchita:$SHORT_SHA || exit 0'
   ]
 #step 2
 - name: gcr.io/cloud-builders/docker
   args: [
    'build', 
    '-t', 
-   'gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab',
+   'gcr.io/business-transformers/my-source-repo-suchita:$SHORT_SHA',
    '-t', 
-   'gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab',
+   'gcr.io/business-transformers/my-source-repo-suchita:$SHORT_SHA',
    '.'
   ]
 #step 3
@@ -29,7 +29,7 @@ steps:
    'image', 
    'deployment', 
    'my-source-repo-suchita', 
-   'my-source-repo-suchita=gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab'
+   'my-source-repo-suchita=gcr.io/business-transformers/my-source-repo-suchita:$SHORT_SHA'
   ]
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=asia-south1-c'
