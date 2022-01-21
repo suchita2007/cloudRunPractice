@@ -5,10 +5,7 @@ steps:
   args: ['push', 'gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA']
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'k8s/']
-  env:
-   - 'CLOUDSDK_COMPUTE_REGION='asia-south1-c'
-   - 'CLOUDSDK_CONTAINER_CLUSTER='cluster-vatan'
-#step 4
+  env: ['CLOUDSDK_COMPUTE_REGION='asia-south1-c' , 'CLOUDSDK_CONTAINER_CLUSTER='cluster-vatan']
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
    'set', 
