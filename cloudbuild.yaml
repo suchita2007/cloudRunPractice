@@ -3,13 +3,13 @@ steps:
   args: ['build', '-t', 'gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA']
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'k8s/']
- # env:
- # - 'CLOUDSDK_COMPUTE_REGION='asia-south1-c'
- # - 'CLOUDSDK_CONTAINER_CLUSTER='cluster-vatan'
+  env:
+   - 'CLOUDSDK_COMPUTE_REGION='asia-south1-c'
+   - 'CLOUDSDK_CONTAINER_CLUSTER='cluster-vatan'
 #step 4
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/kubectl'
   args: [
    'set', 
    'image', 
@@ -18,8 +18,8 @@ steps:
    'vatan2-cloud-run-continuous-deployment-example'='gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA'
   ]
   env:
-  - 'CLOUDSDK_COMPUTE_REGION='asia-south1-c'
-  - 'CLOUDSDK_CONTAINER_CLUSTER='cluster-vatan'  
+   - 'CLOUDSDK_COMPUTE_REGION='asia-south1-c'
+   - 'CLOUDSDK_CONTAINER_CLUSTER='cluster-vatan'  
   
   
   
