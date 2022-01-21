@@ -1,35 +1,41 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA']
+#step 1
+- name: 'gcr.io/cloud-builders/docker' 
+  entrypoint: 'bash'
+  args: [
+   '-c', 
+   'docker pull gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab || exit 0'
+  ]
+#step 2
+- name: gcr.io/cloud-builders/docker
+  args: [
+   'build', 
+   '-t', 
+   'gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab',
+   '-t', 
+   'gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab',
+   '.'
+  ]
+#step 3
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'k8s/']
-  env: ['CLOUDSDK_COMPUTE_REGION='asia-south1-c' , 'CLOUDSDK_CONTAINER_CLUSTER='cluster-vatan']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-south1-c'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-vatan'
+#step 4
 - name: 'gcr.io/cloud-builders/kubectl'
   args: [
    'set', 
    'image', 
    'deployment', 
-   'vatan2-cloud-run-continuous-deployment-example', 
-   'vatan2-cloud-run-continuous-deployment-example'='gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA'
+   'my-source-repo-suchita', 
+   'my-source-repo-suchita=gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab'
   ]
   env:
-   - 'CLOUDSDK_COMPUTE_REGION='asia-south1-c'
-   - 'CLOUDSDK_CONTAINER_CLUSTER='cluster-vatan'  
-  
-  
-  
-  
- #
-#- name: 'gcr.io/cloud-builders/gcloud'
-#  args: ['beta', 'run', 'deploy', 'vatan2-cloud-run-continuous-deployment-example', '--image=gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA', '--region=asia-south1']
-#- name: "gcr.io/cloud-builders/gke-deploy1"
-#  args:
-#  - run
-#  - --filename=gke-app.yaml
-#  - --image=gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA'
-#  - --location=asia-south1
-#  - --cluster=autopilot-cluster-v
-
-
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-south1-c'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-vatan'
+# push images to Google Container Registry with tags
+images: [
+   'my-source-repo-suchita=gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab',
+   'my-source-repo-suchita=gcr.io/business-transformers/my-source-repo-suchita:374c2cff6ca81d48f4ea92d81e350aaa941298ab'
+  ]
