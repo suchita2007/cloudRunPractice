@@ -24,7 +24,7 @@ steps:
   
   
   
-  
+ #
 #- name: 'gcr.io/cloud-builders/gcloud'
 #  args: ['beta', 'run', 'deploy', 'vatan2-cloud-run-continuous-deployment-example', '--image=gcr.io/business-transformers/vatan2-cloud-run-continuous-deployment-example:$SHORT_SHA', '--region=asia-south1']
 #- name: "gcr.io/cloud-builders/gke-deploy1"
